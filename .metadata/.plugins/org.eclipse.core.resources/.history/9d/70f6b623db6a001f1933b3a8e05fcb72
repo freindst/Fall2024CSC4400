@@ -27,7 +27,7 @@ public class Salesman {
 	}
 	
 	public static Salesman[] topFive(Salesman[] sales) {
-		int measure = 0; //the maximum amount of comparison will be n * n
+		int measure = 0;
 		// make a temperary array for the results
 		Salesman[] fiveGuys = new Salesman[5]; //fiveGuys[0] = null
 		for(int i = 0; i < sales.length; i++) { //scan through all salesman

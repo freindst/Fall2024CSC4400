@@ -11,8 +11,7 @@ public class Main {
 		Salesman frank = new Salesman("frank", 80);
 		Salesman luna = new Salesman("luna", 500);
 		Salesman macus = new Salesman("macus", 2000);
-		Salesman jack = new Salesman("jack", 600);
-		Salesman[] sales = new Salesman[] {blade, jon, tim, litmen, abram, frank, luna, macus, jack};
+		Salesman[] sales = new Salesman[] {blade, jon, tim, litmen, abram, frank, luna, macus};
 		Salesman[] top5 = Salesman.topFive(sales);
 		for(int i = 0; i < 5; i++) {
 			System.out.println( (i + 1) + " " + top5[i].display() );

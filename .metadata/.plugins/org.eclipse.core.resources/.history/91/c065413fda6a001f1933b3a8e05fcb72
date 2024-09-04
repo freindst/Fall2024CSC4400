@@ -27,9 +27,17 @@ public class Salesman {
 	}
 	
 	public static Salesman[] topFive(Salesman[] sales) {
-		int measure = 0; //the maximum amount of comparison will be n * n
 		// make a temperary array for the results
 		Salesman[] fiveGuys = new Salesman[5]; //fiveGuys[0] = null
+		//10, 8, 6, 4, 2
+		//if 5 comes in
+		//10, 8, 6, 5, 4
+		//[null, null, null, null, null]
+		//first guy is {blade, 101}
+		//[{blade, 101}, null, null, null, null]
+		//second guy is {Jon, 1100}
+		//[{Jon, 1100}, null, null, null, null]
+		//[{jon, 1100}, {blade, 101}, null, null, null]
 		for(int i = 0; i < sales.length; i++) { //scan through all salesman
 			Salesman current = sales[i];
 			for(int j = 0; j < 5; j++) {
@@ -43,10 +51,8 @@ public class Salesman {
 						current = temp;
 					}
 				}
-				measure++;
 			}
 		}
-		System.out.println("This algorithm takes " + measure + " times of comparison.");
-		return fiveGuys;
+		return sales;
 	}
 }
