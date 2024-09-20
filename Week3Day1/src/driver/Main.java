@@ -5,30 +5,20 @@ public class Main {
 
 	public static void main(String[] args) {
 		Random r = new Random();
-		int[] input = new int[10];
-		int curIndex = 0;
-		int range = 10;
-		while (curIndex < input.length) {
-			int newInt = r.nextInt(range * (curIndex + 1));
-			if (curIndex == 0) {
-				input[curIndex] = newInt;
-				curIndex++;
-			} else if (newInt >= input[curIndex - 1]) {
-				input[curIndex] = newInt;
-				curIndex++;
-			}
+		int size = 10000;
+		int[] input = new int[size];
+		for(int i = 0; i < 10000; i++) {
+			input[i] = i + 10;
 		}
-		for (int i = 0; i < 10; i++) {
-			System.out.println(i + " " + input[i]);
-		}
-		int randomPosition = r.nextInt(10);
-		int numberToSearch = input[randomPosition];
-		int pos = BinarySearch(input, numberToSearch);
-		if (pos >= 0) {
-			System.out.println(numberToSearch + " is at the index of " + pos + " in input array.");
-		} else {
-			System.out.println(numberToSearch + " is not in input array.");
-		}
+		int numberToSearch = size + 1;
+		long startTime = System.nanoTime();
+		int pos = LinearSearch(input, numberToSearch);
+		long endTime = System.nanoTime();
+		System.out.println("It takes linear Search " + (endTime - startTime) + " nanoseconds to run the search.");
+		startTime = System.nanoTime();
+		BinarySearch(input, numberToSearch);
+		endTime = System.nanoTime();
+		System.out.println("It takes binary Search " + (endTime - startTime) + " nanoseconds to run the search.");
 		/*
 		int pos = LinearSearch(input, 7);
 		if (pos >= 0) {
@@ -72,6 +62,24 @@ public class Main {
 				}
 			}
 		}
+	}
+	
+	public static int BinarySearch_1(int[] arr, int target) {
+		int start = 0;
+		int end = arr.length - 1;
+		while(start <= end) {
+			int mid = (start + end) / 2;
+			if (arr[mid] == target) {
+				return mid;
+			} else {
+				if (arr[mid] < target) { //search the larger part of the half of the array
+					start = mid + 1;
+				} else { //search the smaller part of the half of the array
+					end = mid - 1;
+				}
+			}
+		}
+		return -1;
 	}
 
 }
