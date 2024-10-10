@@ -5,8 +5,12 @@ import java.util.Random;
 public class Main {
 
 	public static void main(String[] args) {
-		System.out.println("Sort");
-		int[] testArray = RandomizedArray(10, 1, 10);
+		int[] testArray = RandomizedArray(1000000, 1, 1000000);
+		int[] testArrayForShell = ArrayClone(testArray);
+		long startTime = System.currentTimeMillis();
+		ShellSort(testArrayForShell);
+		long endTime = System.currentTimeMillis();
+		System.out.println("Shell sort took " + (endTime - startTime) + " milliseconds.");
 		/*int[] testArrayForBubble = ArrayClone(testArray);
 		long startTime = System.currentTimeMillis();
 		BubbleSort(testArrayForBubble);
@@ -27,13 +31,10 @@ public class Main {
 			System.out.println(testArray[i]);
 		}*/
 		//shell sort
-		int[] gaps = new int[] {3, 1};
-		for(int i = 0; i < gaps.length; i++) {
-			InsertionSortOnGap(testArray, gaps[i]);
-		}
-		for(int i = 0; i<testArray.length; i++) {
-			System.out.println(testArray[i]);
-		}
+		startTime = System.currentTimeMillis();
+		InsertionSort(testArray);
+		endTime = System.currentTimeMillis();
+		System.out.println("Insert sort took " + (endTime - startTime) + " milliseconds.");
 	}
 	
 	//use selection sort to make the arr in ascending order
@@ -158,9 +159,10 @@ public class Main {
 			gaps = gaps * 2;
 			k = k + 1;
 		}
-		gaps = gaps / 2;
-		for(int i = k; i >= 1; k--) {
-			int gap = pow(2, k);
+		gaps = gaps / 2; //1000 2^10=1024 k = 9 gap is 9
+		k = k - 1;
+		for(int i = k; i >= 0; i--) {
+			int gap = pow(2, i);
 			InsertionSortOnGap(arr, gap);
 		}
 	}
