@@ -65,4 +65,22 @@ public class List {
 			}
 		}
 	}
+	
+	@Override
+	public String toString() {
+		if (this.IsEmpty()) {
+			return "{empty}";
+		} else {
+			String output = "";
+			Node node = this.Head;
+			output = "{" + node.toString();
+			Node next = node.NextNode;
+			while (next != null) {
+				output += " -> " + next.toString();
+				next = next.NextNode;
+			}
+			output += "}";
+			return output;
+		}
+	}
 }

@@ -6,7 +6,12 @@ public class HashTableChaining {
 	
 	public HashTableChaining(int InitialSize) {
 		this.Size = InitialSize;
-		this.Table = new List[this.Size];
+		this.Table = new List[this.Size]; //what is currently on the array. null
+		//always initiate objects and arrays in the constructor
+		for(int i = 0; i < this.Size; i++) {
+			this.Table[i] = new List();
+		}
+		//empty list is different from null(unknown)
 	}
 	
 	public int HashingFunction(int key) {
@@ -38,7 +43,11 @@ public class HashTableChaining {
 	}
 	
 	public void Display() {
-		
+		String output = "";
+		for(int i = 0; i < this.Size; i++) {
+			output += String.format("[%d] %s\n", i, this.Table[i].toString()); 
+		}
+		System.out.println(output);
 	}
 	
 	

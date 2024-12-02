@@ -10,5 +10,10 @@ public class Node {
 		this.Key = 0;
 		this.Value = "";
 	}
+	
+	@Override
+	public String toString() {
+		return String.format("(%d|%s)", this.Key, this.Value);
+	}
 
 }
